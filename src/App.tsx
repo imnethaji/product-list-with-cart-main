@@ -1,35 +1,52 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-
-function App() {
-  const [count, setCount] = useState(0)
-
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+import DESSERTDATA from "./data/data.json";
+interface DishImage {
+  thumbnail: string;
+  mobile: string;
+  tablet: string;
+  desktop: string;
+}
+interface Dish {
+  image: DishImage;
+  name: string;
+  category: string;
+  price: number;
 }
 
-export default App
+const dessertdata: Dish[] = JSON.parse(JSON.stringify(DESSERTDATA));
+
+function App() {
+  console.log(dessertdata);
+  return (
+    <main>
+      <article>
+        <h1>Desserts</h1>
+        <div className="item-card">
+          <h3>{dessertdata[0].category}</h3>
+          <h2>{dessertdata[0].name}</h2>
+          <p>{dessertdata[0].price}</p>
+        </div>
+      </article>
+      <aside>
+        <h1>Your Cart 7</h1>
+        <ul>
+          <li>
+            <h3>Classic Tiramisu</h3>
+            1x @5.50 $5.50
+          </li>
+          <li>
+            <h3>Classic Tiramisu</h3>
+            1x @5.50 $5.50
+          </li>
+          <li>
+            <h3>Classic Tiramisu</h3>
+            1x @5.50 $5.50
+          </li>
+        </ul>
+        Order Total $46.50
+        <div className="disclaimer">This is a Carbon-neutral delivery</div>
+      </aside>
+    </main>
+  );
+}
+
+export default App;
