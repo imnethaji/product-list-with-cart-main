@@ -1,3 +1,4 @@
+import DishCard from "./components/DishCard";
 import DESSERTDATA from "./data/data.json";
 interface DishImage {
   thumbnail: string;
@@ -12,18 +13,16 @@ interface Dish {
   price: number;
 }
 
-const dessertdata: Dish[] = JSON.parse(JSON.stringify(DESSERTDATA));
-
+const dessertData: Dish[] = JSON.parse(JSON.stringify(DESSERTDATA));
 function App() {
-  console.log(dessertdata);
   return (
     <main>
       <article>
         <h1>Desserts</h1>
-        <div className="item-card">
-          <h3>{dessertdata[0].category}</h3>
-          <h2>{dessertdata[0].name}</h2>
-          <p>{dessertdata[0].price}</p>
+        <div className="dish-container">
+          {dessertData.map((item, index) => (
+            <DishCard key={index} dessertData={item} />
+          ))}
         </div>
       </article>
       <aside>
